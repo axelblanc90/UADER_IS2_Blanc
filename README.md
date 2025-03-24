@@ -1,4 +1,4 @@
-# Proyecto UADER_IS2_{tu_apellido}
+# Proyecto UADER_IS2_Blanc
 
 ## Introducción
 Este proyecto contiene diferentes programas en Python para la materia IS2.
