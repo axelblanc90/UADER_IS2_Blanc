@@ -9,9 +9,9 @@ upper = 500
 print("Prime numbers between", lower, "and", upper, "are:")
 
 
- for num in range(lower, upper + 1):
+for num in range(lower, upper + 1):
    # all prime numbers are greater than 1
-   if num > 1:
+    if num > 1:
        for i in range(2, num):
         #si el numero es dibvisible por cualquier numero de i,no es un num primo
            if (num % i) == 0:
