@@ -7,21 +7,43 @@
 #*-------------------------------------------------------------------------*
 import sys
 
+#Función para calcular el factorial de un número
 def factorial(n):
-    if n == 0 or n == 1:
+    if n == 0:
         return 1
     else:
-        return n * factorial(n - 1)
+        result = 1
+        for i in range(1, n + 1):
+            result *= i
+        return result
 
-#Si el rango no es pasado como argumento, se solicita al usuario
+#Obtener la entrada desde los argumentos o pedirla al usuario
 if len(sys.argv) < 2:
-    range_input = input("Por favor ingresa el rango (por ejemplo, 5-20): ")
+    range_input = input("Por favor, ingrese un número o rango (ejemplo 4-8): ")
 else:
     range_input = sys.argv[1]
 
-#Separar los números desde-hasta
-start, end = map(int, range_input.split('-'))
+#Caso 1: Si el argumento tiene un '/', se trata de un rango
+if '/' in range_input:
+    try:
+        start, end = map(int, range_input.split('/'))
+    except ValueError:
+        print("Error: El rango no está bien formado. Asegúrese de ingresar dos números separados por un '/'.")
+        sys.exit(1)  # Salir con un error si el rango no es válido
+else:
+    # Caso 2: Si es un solo número
+    try:
+        number = int(range_input)
+        # Si el número es negativo, calcular factorial desde 1 hasta el valor absoluto de ese número
+        if number < 0:
+            start, end = 1, abs(number)  # Cambiar el rango para que empiece en 1
+        # Si el número es positivo, calcular factorial desde ese número hasta 60
+        else:
+            start, end = number, 60
+    except ValueError:
+        print("Error: La entrada no es un número válido.")
+        sys.exit(1)  # Salir con un error si la entrada no es válida
 
-#Calcular y mostrar el factorial para cada número en el rango
+#Calcular los factoriales entre el rango (start, end)
 for num in range(start, end + 1):
     print(f"El factorial de {num} es {factorial(num)}")
